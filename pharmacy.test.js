@@ -6,4 +6,15 @@ describe("Pharmacy", () => {
       [new Drug("test", 1, 2)],
     );
   });
+  it("should degrade Dafalgan twice as fast", () => {
+    const pharmacy = new Pharmacy([new Drug("Dafalgan", 5, 10)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Dafalgan", 4, 8)]);
+  });
+
+  it("should degrade Dafalgan four times as fast after expiration", () => {
+    const pharmacy = new Pharmacy([new Drug("Dafalgan", 0, 10)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([
+      new Drug("Dafalgan", -1, 6),
+    ]);
+  });
 });

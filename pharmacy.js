@@ -25,6 +25,9 @@ export class Pharmacy {
         break;
       case "Magic Pill":
         break;
+      case "Dafalgan":
+        this.updateDafalgan(drug);
+        break;
       default:
         this.updateDefaultDrug(drug);
         break;
@@ -46,6 +49,9 @@ export class Pharmacy {
           break;
         case "Magic Pill":
           break;
+        case "Dafalgan":
+          drug.benefit -= 2;
+          break;
         default:
           if (drug.benefit > 0) {
             drug.benefit -= 1;
@@ -57,6 +63,12 @@ export class Pharmacy {
     drug.benefit = Math.max(0, Math.min(50, drug.benefit));
 
     return drug;
+  }
+
+  updateDafalgan(drug) {
+    if (drug.benefit > 0) {
+      drug.benefit -= 2;
+    }
   }
 
   updateHerbalTea(drug) {
